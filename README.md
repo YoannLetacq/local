@@ -81,7 +81,7 @@ Use the anonymous username and no password.
 
 2. #### Upload Reverse Shell Script:
 
-- Click [here](https://zone01normandie.org/git/yyoannle/local/src/branch/master/reverse.php) to look the reverse shell script.
+- Click [here](https://github.com/YoannLetacq/local/blob/main/reverse.php) to look the reverse shell script.
 
 - Upload script using FTP:
 ```sh
