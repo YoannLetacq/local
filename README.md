@@ -1,0 +1,2 @@
+# local
+Privilege escalation exercise
